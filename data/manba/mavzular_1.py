@@ -296,7 +296,7 @@ Amaliy ish natijasida o‘quvchilar xavfsizlik hodisalarining aksariyati murakka
             ('Real vaziyatni tahlil qilishga asoslangan o‘qitish usuli:',
              ['Diktant', 'Insho', 'Ma’ruza', 'Keys-stadi'], 'd'),
             ('Parolsiz Wi-Fi tarmog‘i qanday zaiflik hisoblanadi?',
-             ['Fizik', 'Tarmoq xavfsizligi zaifligi', 'Qonuniy', 'Zaiflik emas'], 'b'),
+             ['Fizik xavfsizlik zaifligi', 'Tarmoq xavfsizligi zaifligi', 'Huquqiy zaiflik', 'Zaiflik hisoblanmaydi'], 'b'),
         ],
         'mustaqil': ['Ommaviy axborot vositalaridan bitta real xavfsizlik hodisasini topib, tahlil jadvali asosida '
                      'tahlil qiling.',

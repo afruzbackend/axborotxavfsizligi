@@ -15,7 +15,7 @@ from .docx_parser import parse
 from .editing import html_to_text, text_to_html, text_to_table
 from . import fan
 from .importer import seed_course
-from .models import Course, QuickQA, Section, TestQuestion, Topic
+from .models import Course, QuickQA, Resource, Section, TestQuestion, Topic
 
 TMP_MEDIA = tempfile.mkdtemp()
 LAST = fan.PARTS[-1][2]  # oxirgi mavzu raqami = mavzular soni
@@ -240,6 +240,16 @@ class SectionsTests(BaseCase):
         self.assertGreater(qa.count(), LAST * 4)
         self.assertEqual(qa.values('topic').distinct().count(), LAST)  # har mavzuda bor
         self.assertTrue(self.course.cover_image)
+
+    def test_reimport_refreshes_glossary_and_keeps_resources(self):
+        terms = sorted(self.course.glossary.values_list('term', 'definition'))
+        res = Resource.objects.create(course=self.course, topic=self.course.topics.get(number=2), kind='video',
+                                      title='Video', url='https://youtu.be/aaaaaaaaaaa')
+        course, _ = seed_course()  # qayta import: atamalar takrorlanmaydi va mavzusiz qolmaydi
+        self.assertEqual(sorted(course.glossary.values_list('term', 'definition')), terms)
+        self.assertFalse(course.glossary.filter(topic__isnull=True).exists())
+        res.refresh_from_db()  # video o'chib ketmaydi va yangi 2-mavzuga bog'lanadi
+        self.assertEqual(res.topic.number, 2)
 
     def test_qa_is_not_a_copy_of_tests(self):
         tests = {t.lower() for t in TestQuestion.objects.filter(topic__course=self.course).values_list('text', flat=True)}

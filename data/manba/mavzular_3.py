@@ -209,7 +209,7 @@ Internetdagi deyarli barcha ishlar brauzer orqali bajariladi, shuning uchun unin
             ('Sayt brauzerga saqlaydigan kichik ma’lumot fayli:',
              ['Drayver', 'Cookie', 'Arxiv', 'Shrift'], 'b'),
             ('Yashirin rejim nimani saqlamaydi?',
-             ['Yuklab olingan fayllarni', 'Xatcho‘plarni', 'Internet provayder yozuvlarini', 'Tarix va cookie’larni'], 'd'),
+             ['Yuklab olingan fayllarni', 'Xatcho‘plarni', 'Brauzer sozlamalaridagi o‘zgarishlarni', 'Tarix va cookie’larni'], 'd'),
             ('Noma’lum va keraksiz kengaytma bilan nima qilinadi?',
              ['O‘chiriladi', 'Barcha ruxsatlar beriladi', 'Do‘stlarga yuboriladi', 'Yangilanadi'], 'a'),
         ],

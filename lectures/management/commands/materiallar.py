@@ -27,11 +27,15 @@ class Command(BaseCommand):
             topic = course.topics.filter(number=n).first() if n else None
             Resource.objects.create(course=course, topic=topic, kind='material', title=title, url=url, note=note)
             added += 1
-        if not Resource.objects.filter(course=course, kind='material', title=DOCX_TITLE).exists():
-            with open(settings.LECTURE_DOCX, 'rb') as fh:
-                res = Resource(course=course, kind='material', title=DOCX_TITLE,
-                               note='Barcha mavzular: o‘quv texnologiyasi, ma’ruza matni, savollar va testlar · chop etish uchun')
-                res.file.save(f'{fan.SLUG}-maruzalar.docx', File(fh), save=True)
+        # ma'ruzalar fayli har safar data/maruza.docx dan yangilanadi (matn o'zgargan bo'lishi mumkin)
+        res = Resource.objects.filter(course=course, kind='material', title=DOCX_TITLE).first()
+        if res:
+            res.file.delete(save=False)
+        else:
+            res = Resource(course=course, kind='material', title=DOCX_TITLE,
+                           note='Barcha mavzular: o‘quv texnologiyasi, ma’ruza matni, savollar va testlar · chop etish uchun')
             added += 1
+        with open(settings.LECTURE_DOCX, 'rb') as fh:
+            res.file.save(f'{fan.SLUG}-maruzalar.docx', File(fh), save=True)
         total = Resource.objects.filter(course=course, kind='material').count()
         self.stdout.write(self.style.SUCCESS(f'Materiallar: {added} ta qo‘shildi, jami {total} ta.'))

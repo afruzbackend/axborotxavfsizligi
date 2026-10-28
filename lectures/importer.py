@@ -9,7 +9,7 @@ from django.db import transaction
 
 from . import fan
 from .docx_parser import parse
-from .models import Course, Part, Section, TestQuestion, Topic
+from .models import Course, Part, Resource, Section, TestQuestion, Topic
 
 # Mavzu nomidagi so'zlarga qarab 3D ko'rgazmani tanlash (har qanday fan uchun)
 SCENE_HINTS = [
@@ -77,8 +77,14 @@ def create_course(data, *, title=None, author=None, author_photo=None, replace=N
         hours_theory=meta['hours_theory'], hours_practice=meta['hours_practice'], hours_self=meta['hours_self'],
         self_study_plan=meta.get('mustaqilPlan', []),
     )
+    kept = {}  # resurs id -> mavzu raqami: videolar, taqdimotlar va fayllar mavzular bilan o'chib ketmasin
     if replace:
         course = replace
+        # matndan olingan atamalar mavzuga bog'langan: mavzular bilan birga yangilanadi
+        # (aks holda eski ta'riflar mavzusiz qolib ketadi); mavzusiz qo'lda qo'shilganlari saqlanadi
+        course.glossary.filter(topic__isnull=False).delete()
+        kept = dict(course.resources.filter(topic__isnull=False).values_list('pk', 'topic__number'))
+        course.resources.filter(pk__in=kept).update(topic=None)
         course.topics.all().delete()
         course.parts.all().delete()
         for k, v in fields.items():
@@ -103,6 +109,11 @@ def create_course(data, *, title=None, author=None, author_photo=None, replace=N
         TestQuestion.objects.bulk_create(
             TestQuestion(topic=topic, order=i, text=q['q'], options=q['options'], answer=q.get('a') or 0)
             for i, q in enumerate(t['tests'], 1) if len(q['options']) >= 2)
+    if kept:  # yangi docx'da shu raqamli mavzu bo'lsa — unga qaytadi, bo'lmasa umumiy resurs bo'lib qoladi
+        new = dict(course.topics.values_list('number', 'pk'))
+        for pk, n in kept.items():
+            if n in new:
+                Resource.objects.filter(pk=pk).update(topic_id=new[n])
     auto_glossary(course)
     qa_from_content(course)
     return course

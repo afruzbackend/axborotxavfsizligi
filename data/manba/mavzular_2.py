@@ -28,7 +28,7 @@ Kompyuterdagi xavflarni aniqlash uchun tizimning eng ko‘p zaiflik uchraydigan 
 """,
             """
 ## Ishni bajarish tartibi
-- **Hisoblarni ko‘rish.** Buyruqlar satrida `net user` buyrug‘ini bering — kompyuterdagi barcha hisoblar ro‘yxati chiqadi. Administratorlar guruhini `net localgroup Administrators` buyrug‘i bilan ko‘ring.
+- **Hisoblarni ko‘rish.** Buyruqlar satrida `net user` buyrug‘ini bering — kompyuterdagi barcha hisoblar ro‘yxati chiqadi. Administratorlar guruhini `net localgroup Администраторы` (ingliz tilli tizimda `Administrators`) buyrug‘i bilan ko‘ring.
 - **Avtoyuklanishni tekshirish.** `Ctrl + Shift + Esc` bilan Task Manager (Диспетчер задач) ni oching, «Автозагрузка» bo‘limida noma’lum dasturlarni yozib oling.
 - **Ochiq portlarni ko‘rish.** `netstat -an` buyrug‘i ochiq ulanishlar va tinglayotgan (LISTENING) portlarni ko‘rsatadi.
 - **Umumiy papkalarni ko‘rish.** `net share` buyrug‘i tarmoqda ochiq qilingan papkalarni chiqaradi.
@@ -167,7 +167,7 @@ Xavf darajasi 6 va undan yuqori bo‘lsa — darhol, 3–4 bo‘lsa — rejali r
 - **Jadval tuzish.** Excel’da ustunlar yarating: A — №, B — Tahdid, C — Ehtimollik, D — Zarar, E — Xavf darajasi, F — Chora.
 - **Ma’lumot kiritish.** Xavflar reyestridagi kamida 8 ta tahdidni kiriting va har biriga 1–3 ball qo‘ying.
 - **Formula yozish.** E2 katakka `=C2*D2` formulasini yozib, pastga cho‘zing.
-- **Daraja nomini chiqarish.** G2 katakka `=IF(E2>=6;"Yuqori";IF(E2>=3;"O‘rta";"Past"))` formulasini yozing.
+- **Daraja nomini chiqarish.** G2 katakka `=ЕСЛИ(E2>=6;"Yuqori";ЕСЛИ(E2>=3;"O‘rta";"Past"))` formulasini yozing (ingliz tilidagi Excel’da `ЕСЛИ` o‘rniga `IF`).
 - **Shartli formatlash.** E ustunini belgilab «Условное форматирование» → «Цветовые шкалы» ni tanlang: yuqori xavflar qizil, past xavflar yashil bo‘ladi.
 Formuladagi ajratuvchi belgi (`;` yoki `,`) kompyuterning til sozlamalariga bog‘liq.
 """,
@@ -204,7 +204,7 @@ Ishni tugatgach, fayl «Xavflar_matritsasi_Familiya.xlsx» nomi bilan saqlanadi 
              ['Ustuvorlik', 'Formatlash', 'Arxivlash', 'Kompilyatsiya'], 'a'),
         ],
         'mustaqil': ['Uy tarmog‘ingiz uchun 6 ta tahdiddan iborat xavflar matritsasini Excel’da tuzing.',
-                     'IF funksiyasi o‘rniga IFS funksiyasidan foydalanib daraja nomini chiqaruvchi formula yozing.'],
+                     'ЕСЛИ (IF) funksiyasi o‘rniga УСЛОВИЯ (IFS) funksiyasidan foydalanib daraja nomini chiqaruvchi formula yozing.'],
     },
     # ------------------------------------------------------------------ 14
     {

@@ -21,9 +21,9 @@ MAVZULAR = [
 ## Dasturiy ta’minot litsenziyalari
 | Litsenziya turi | Mazmuni | Misollar |
 | Tijoriy (proprietar) | Pullik, nusxalash va tarqatish taqiqlangan | Windows, MS Office, Photoshop |
-| Freeware | Bepul foydalanish, lekin kodi yopiq | 7-Zip, Google Chrome |
+| Freeware | Bepul foydalanish, lekin kodi yopiq | Google Chrome, Adobe Acrobat Reader |
 | Shareware | Sinov muddati yoki cheklangan versiya | WinRAR, ba’zi antiviruslar |
-| Ochiq kodli (open source) | Bepul, kodini ko‘rish va o‘zgartirish mumkin | Linux, LibreOffice, Firefox |
+| Ochiq kodli (open source) | Bepul, kodini ko‘rish va o‘zgartirish mumkin | Linux, LibreOffice, Firefox, 7-Zip |
 | Creative Commons | Rasm, matn, musiqa uchun shartli bepul foydalanish | Wikimedia Commons materiallari |
 - **Ochiq kodli dastur** — manba kodi hammaga ochiq bo‘lib, uni ko‘rish, o‘zgartirish va tarqatish ruxsat etilgan dastur.
 - **Piratlik** — litsenziyalangan dastur, film yoki musiqani egasining ruxsatisiz nusxalash va tarqatish.

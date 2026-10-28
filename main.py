@@ -45,8 +45,15 @@ def main():
 
     call_command('migrate', verbosity=0)
     from lectures.models import Topic
-    if not Topic.objects.exists():
+    if not Topic.objects.exists():  # birinchi ishga tushish: darslik, materiallar, videolar va taqdimotlar
         call_command('import_docx')
+        call_command('materiallar')
+        try:
+            call_command('videolar')
+        except Exception as e:  # noqa: BLE001 — internet bo'lmasa ham darslik ochilsin
+            print("Videolar qo'shilmadi (internet kerak):", e)
+        print('Taqdimotlar tayyorlanmoqda, bir necha daqiqa kuting...')
+        call_command('taqdimotlar')
     try:  # har ishga tushishda zaxira nusxa: backups/ papkada oxirgi 10 tasi
         from lectures.backup import auto_backup
         auto_backup()

@@ -457,7 +457,7 @@ Muhim: shifrlash paroli va tiklash kaliti yo‘qolsa, ma’lumotlarni hech kim, 
 """,
             """
 ## Ishni bajarish tartibi
-- **Parolli arxiv.** «Hisobotlar» papkasi ustida o‘ng tugma → «7-Zip» → «Добавить к архиву». Format: 7z yoki zip, shifrlash usuli: AES-256, kuchli parol kiriting, «Шифровать имена файлов» ni belgilang.
+- **Parolli arxiv.** «Hisobotlar» papkasi ustida o‘ng tugma → «7-Zip» → «Добавить к архиву». Format: 7z, shifrlash usuli: AES-256, kuchli parol kiriting, «Шифровать имена файлов» ni belgilang (bu belgi faqat 7z formatida bor).
 - **Arxivni tekshirish.** Arxivni ochishga urinib ko‘ring — parol so‘ralishi kerak. Noto‘g‘ri parol bilan ochilmasligini sinang.
 - **Fleshkani shifrlash.** Explorer’da fleshka ustida o‘ng tugma → «Включить BitLocker» → «Использовать пароль» → kuchli parol.
 - **Tiklash kalitini saqlash.** «Сохранить в файл» ni tanlab, kalitni kompyuterdagi xavfsiz papkaga (fleshkaning o‘ziga emas!) saqlang yoki chop eting.
